@@ -11,7 +11,7 @@
 if (self !== top) { try { top.location.replace(self.location.href); } catch (e) { document.documentElement.style.display = 'none'; } }
 </script>
 <noscript><style>
-  .reveal,.hero-pre,.hero-sub,.hero-cta,.hero-title .ln span{opacity:1!important;transform:none!important}
+  .reveal,.hero-pre,.hero-sub,.hero-cta,.hero-art,.hero-title .ln span{opacity:1!important;transform:none!important}
   .loader,.cursor,.cursor-dot,.spotlight{display:none!important}
   body{cursor:auto!important}
 </style></noscript>
@@ -20,6 +20,7 @@ if (self !== top) { try { top.location.replace(self.location.href); } catch (e) 
 <meta property="og:title" content="Le Salon — Atelier of Hair &amp; Beauty, Kathmandu" />
 <meta property="og:description" content="Signature cuts, couture colour, highlights and nail artistry in the heart of Kathmandu. Appointments preferred." />
 <meta property="og:type" content="website" />
+<meta property="og:image" content="https://denishkarki928-tech.github.io/lesalon/assets/hero-art.jpg" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230B0B0E'/%3E%3Ccircle cx='32' cy='32' r='29' fill='none' stroke='%23D9B36C' stroke-width='1.5'/%3E%3Ctext x='32' y='39' font-family='Georgia,serif' font-size='20' fill='%23E8CE93' text-anchor='middle' letter-spacing='1'%3ELS%3C/text%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -104,9 +105,21 @@ if (self !== top) { try { top.location.replace(self.location.href); } catch (e) 
   /* ---------- hero ---------- */
   main{position:relative;z-index:4}
   .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:120px clamp(20px,4.5vw,56px) 90px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(34px,5vw,80px);align-items:center}
+  .hero-art{justify-self:end;width:min(430px,100%);opacity:0;transform:translateY(28px);position:relative}
+  .hero-art-frame{position:relative;border:1px solid var(--line);border-radius:300px 300px 16px 16px;padding:13px;background:linear-gradient(180deg,rgba(217,179,108,.12),rgba(217,179,108,.03));box-shadow:0 44px 120px rgba(0,0,0,.55)}
+  .hero-art-frame::after{content:"";position:absolute;inset:-1px;border-radius:inherit;background:conic-gradient(from 200deg, transparent 0deg, rgba(238,217,164,.22) 45deg, transparent 100deg);pointer-events:none}
+  .hero-art-inner{display:block;border-radius:288px 288px 8px 8px;overflow:hidden;background:#FBF8F3;aspect-ratio:4/4.7}
+  .hero-art-inner img{width:100%;height:100%;object-fit:cover;object-position:55% 100%}
+  .hero-art-cap{margin-top:16px;text-align:center;font-family:var(--accentf);font-style:italic;font-size:14.5px;letter-spacing:.14em;color:var(--muted)}
+  .hero-art-cap b{color:var(--gold);font-weight:500}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-art{justify-self:center;width:min(350px,86vw);margin-top:14px}
+  }
   .hero-pre{display:flex;align-items:center;gap:16px;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:30px;opacity:0;transform:translateY(18px)}
   .hero-pre::before{content:"";width:54px;height:1px;background:var(--gold);display:inline-block}
-  .hero-title{font-family:var(--display);font-weight:400;font-size:clamp(56px,11.5vw,168px);line-height:.98;letter-spacing:.01em;color:var(--ivory);max-width:12ch}
+  .hero-title{font-family:var(--display);font-weight:400;font-size:clamp(50px,7.6vw,122px);line-height:.98;letter-spacing:.01em;color:var(--ivory);max-width:12ch}
   .hero-title .ln{display:block;overflow:hidden}
   .hero-title .ln span{display:inline-block;transform:translateY(112%);opacity:.98}
   .hero-title em{font-family:var(--accentf);font-style:italic;font-weight:400;color:var(--gold-bright)}
@@ -282,15 +295,25 @@ if (self !== top) { try { top.location.replace(self.location.href); } catch (e) 
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top" aria-label="Introduction">
-  <p class="hero-pre">Kathmandu · Est. for the obsessed</p>
-  <h1 class="hero-title">
-    <span class="ln"><span>Hair is</span></span>
-    <span class="ln"><span><em>architecture.</em></span></span>
-  </h1>
-  <p class="hero-sub">Le Salon is Kathmandu&rsquo;s atelier of hair &amp; beauty — where cuts are engineered for bone structure, colour is mixed for Himalayan light, and nails are finished like jewellery.</p>
-  <div class="hero-cta">
-    <a class="btn btn-solid" href="tel:+9779803562576"><i aria-hidden="true"></i><span>Book your chair</span></a>
-    <a class="btn btn-ghost" href="#crafts">Explore the crafts</a>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="hero-pre">Kathmandu · Est. for the obsessed</p>
+      <h1 class="hero-title">
+        <span class="ln"><span>Hair is</span></span>
+        <span class="ln"><span><em>architecture.</em></span></span>
+      </h1>
+      <p class="hero-sub">Le Salon is Kathmandu&rsquo;s atelier of hair &amp; beauty — where cuts are engineered for bone structure, colour is mixed for Himalayan light, and nails are finished like jewellery.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="tel:+9779803562576"><i aria-hidden="true"></i><span>Book your chair</span></a>
+        <a class="btn btn-ghost" href="#crafts">Explore the crafts</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="hero-art-frame">
+        <span class="hero-art-inner"><img src="assets/hero-art.jpg" alt="Illustrated portrait of a woman with dramatic makeup, jewelled nails and a blush brush — the Le Salon muse" width="945" height="990" fetchpriority="high" /></span>
+      </div>
+      <p class="hero-art-cap"><b>La muse</b> · the house artwork</p>
+    </div>
   </div>
   <div class="hero-foot">
     <div class="hero-stats">
@@ -508,7 +531,7 @@ if (HAS) gsap.registerPlugin(ScrollTrigger);
 
 /* ---------- no-fail baseline: if libs are missing, show everything ---------- */
 if (!MOTION) {
-  document.querySelectorAll('.reveal,.hero-pre,.hero-sub,.hero-cta').forEach(function(el){
+  document.querySelectorAll('.reveal,.hero-pre,.hero-sub,.hero-cta,.hero-art').forEach(function(el){
     el.style.opacity = 1; el.style.transform = 'none';
   });
   document.querySelectorAll('.hero-title .ln span').forEach(function(el){
@@ -537,7 +560,9 @@ function heroIn(){
     .to('.hero-title .ln span', { y: 0, duration: 1.1, ease: 'power4.out', stagger: .12 })
     .to('.hero-pre', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.7')
     .to('.hero-sub', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.6')
-    .to('.hero-cta', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.6');
+    .to('.hero-cta', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.6')
+    .to('.hero-art', { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' }, '-=.9');
+  gsap.to('.hero-art-frame', { y: -10, duration: 3.6, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1.6 });
 }
 
 /* ================= SMOOTH SCROLL + anchors ================= */
