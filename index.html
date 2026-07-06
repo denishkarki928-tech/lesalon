@@ -583,21 +583,47 @@ if (!MOTION) {
   });
 }
 
-/* ================= LOADER ================= */
+/* ================= LOADER + ENTRANCE ================= */
+/* If rAF is suspended or throttled (background tab, low-power mode, in-app
+   browsers), tweens never run and the hero would stay at opacity 0. So the
+   intro only plays when the page is visible, and a timer force-reveals
+   everything if it hasn't finished in time. */
+var introDone = false;
+function showHeroNow(){
+  if (introDone) return;
+  introDone = true;
+  var loader = document.getElementById('loader');
+  if (loader) loader.style.display = 'none';
+  if (HAS) gsap.killTweensOf(['#loaderWord span', '#loaderLine', '#loaderTag', '#loader',
+    '.hero-title .ln span', '.hero-pre', '.hero-sub', '.hero-cta', '.hero-art', '.hero-art-frame']);
+  document.querySelectorAll('.hero-pre,.hero-sub,.hero-cta,.hero-art').forEach(function(el){
+    el.style.opacity = 1; el.style.transform = 'none';
+  });
+  document.querySelectorAll('.hero-title .ln span').forEach(function(el){
+    el.style.transform = 'none';
+  });
+  if (MOTION) gsap.to('.hero-art-frame', { y: -10, duration: 3.6, ease: 'sine.inOut', repeat: -1, yoyo: true });
+}
+
 (function(){
   var loader = document.getElementById('loader');
   if (!MOTION) { loader.style.display = 'none'; return; }
+  if (document.hidden) { showHeroNow(); return; }
   var letters = document.querySelectorAll('#loaderWord span');
   var tl = gsap.timeline({ onComplete: function(){ loader.style.display = 'none'; heroIn(); } });
   tl.to(letters, { opacity: 1, y: 0, duration: .7, ease: 'power3.out', stagger: .06 })
     .to('#loaderLine', { x: '100%', duration: .9, ease: 'power2.inOut' }, '-=.4')
     .to('#loaderTag', { opacity: 1, duration: .5 }, '-=.6')
     .to(loader, { opacity: 0, duration: .6, ease: 'power2.inOut', delay: .25 });
+  setTimeout(function(){ showHeroNow(); }, 6500);
+  document.addEventListener('visibilitychange', function onHide(){
+    if (document.hidden) { document.removeEventListener('visibilitychange', onHide); showHeroNow(); }
+  });
 })();
 
 function heroIn(){
-  if (!MOTION) return;
-  gsap.timeline()
+  if (!MOTION || introDone) return;
+  gsap.timeline({ onComplete: function(){ introDone = true; } })
     .to('.hero-title .ln span', { y: 0, duration: 1.1, ease: 'power4.out', stagger: .12 })
     .to('.hero-pre', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.7')
     .to('.hero-sub', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.6')
