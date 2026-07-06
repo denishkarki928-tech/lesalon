@@ -21,7 +21,31 @@ if (self !== top) { try { top.location.replace(self.location.href); } catch (e) 
 <meta property="og:description" content="Signature cuts, couture colour, highlights and nail artistry in the heart of Kathmandu. Appointments preferred." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://denishkarki928-tech.github.io/lesalon/assets/hero-art.jpg" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230B0B0E'/%3E%3Ccircle cx='32' cy='32' r='29' fill='none' stroke='%23D9B36C' stroke-width='1.5'/%3E%3Ctext x='32' y='39' font-family='Georgia,serif' font-size='20' fill='%23E8CE93' text-anchor='middle' letter-spacing='1'%3ELS%3C/text%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Ccircle%20cx='32'%20cy='32'%20r='30'%20fill='%230B0B0E'/%3E%3Ccircle%20cx='32'%20cy='32'%20r='29'%20fill='none'%20stroke='%23D9B36C'%20stroke-width='1.5'/%3E%3Ctext%20x='32'%20y='39'%20font-family='Georgia,serif'%20font-size='20'%20fill='%23E8CE93'%20text-anchor='middle'%20letter-spacing='1'%3ELS%3C/text%3E%3C/svg%3E" />
+<link rel="canonical" href="https://denishkarki928-tech.github.io/lesalon/" />
+<meta name="theme-color" content="#0B0B0E" />
+<meta property="og:url" content="https://denishkarki928-tech.github.io/lesalon/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Le Salon — Atelier of Hair &amp; Beauty, Kathmandu" />
+<meta name="twitter:description" content="Signature cuts, couture colour, highlights and nail artistry in the heart of Kathmandu. Appointments preferred." />
+<meta name="twitter:image" content="https://denishkarki928-tech.github.io/lesalon/assets/hero-art.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Le Salon",
+  "description": "Kathmandu's atelier of hair & beauty — signature haircuts, colour & balayage, highlights, styling rituals and nail artistry.",
+  "url": "https://denishkarki928-tech.github.io/lesalon/",
+  "image": "https://denishkarki928-tech.github.io/lesalon/assets/hero-art.jpg",
+  "telephone": "+977-1-5447842",
+  "address": { "@type": "PostalAddress", "addressLocality": "Kathmandu", "addressCountry": "NP" },
+  "sameAs": [
+    "https://www.instagram.com/lesalonnepal/",
+    "https://www.facebook.com/lesalon",
+    "https://www.threads.net/@lesalonnepal"
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -100,7 +124,16 @@ if (self !== top) { try { top.location.replace(self.location.href); } catch (e) 
   .nav-book span{position:relative;z-index:1;transition:color .4s;font-style:normal}
   .nav-book:hover i{transform:translateY(0)}
   .nav-book:hover span{color:#141009}
-  @media (max-width:860px){.nav-links{display:none}}
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:7px;padding:12px 6px;position:relative;z-index:1210}
+  .nav-toggle span{display:block;width:27px;height:1.5px;background:var(--gold-bright);transition:transform .35s var(--ease)}
+  .nav-toggle[aria-expanded="true"] span:first-child{transform:translateY(4.25px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:last-child{transform:translateY(-4.25px) rotate(-45deg)}
+  .mnav{position:fixed;inset:0;z-index:1190;background:rgba(11,11,14,.94);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 clamp(24px,8vw,60px);opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s}
+  .mnav.open{opacity:1;visibility:visible}
+  .mnav a{font-family:var(--display);font-size:clamp(30px,8vw,44px);color:var(--ivory);padding:16px 0;border-bottom:1px solid var(--line)}
+  .mnav a:hover{color:var(--gold-bright)}
+  .mnav .mnav-book{font-family:var(--accentf);font-style:italic;font-size:clamp(20px,5.5vw,26px);color:var(--gold);border-bottom:none;margin-top:14px}
+  @media (max-width:860px){.nav-links{display:none}.nav-book{display:none}.nav-toggle{display:flex}}
 
   /* ---------- hero ---------- */
   main{position:relative;z-index:4}
@@ -288,10 +321,18 @@ if (self !== top) { try { top.location.replace(self.location.href); } catch (e) 
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-book" href="tel:+9779803562576"><i aria-hidden="true"></i><span>Book Now</span></a>
+  <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><span></span><span></span></button>
 </nav>
+<div class="mnav" id="mnav">
+  <a href="#crafts">The Crafts</a>
+  <a href="#atelier">Atelier</a>
+  <a href="#work">The Work</a>
+  <a href="#contact">Contact</a>
+  <a class="mnav-book" href="tel:+9779803562576">Book now — call 980&#8209;3562576</a>
+</div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1">
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top" aria-label="Introduction">
@@ -310,7 +351,7 @@ if (self !== top) { try { top.location.replace(self.location.href); } catch (e) 
     </div>
     <div class="hero-art">
       <div class="hero-art-frame">
-        <span class="hero-art-inner"><img src="assets/hero-art.jpg" alt="Illustrated portrait of a woman with dramatic makeup, jewelled nails and a blush brush — the Le Salon muse" width="945" height="990" fetchpriority="high" /></span>
+        <span class="hero-art-inner"><img src="assets/hero-art.jpg" alt="Illustrated portrait of a woman with dramatic makeup, jewelled nails and a blush brush — the Le Salon muse" width="945" height="990" decoding="async" /></span>
       </div>
       <p class="hero-art-cap"><b>La muse</b> · the house artwork</p>
     </div>
@@ -573,13 +614,39 @@ if (MOTION) {
   gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
   gsap.ticker.lagSmoothing(0);
 }
-document.querySelectorAll('a[href^="#"]').forEach(function(a){
+/* ================= MOBILE MENU ================= */
+var closeMenu = function(){};
+(function(){
+  var toggle = document.getElementById('navToggle'), panel = document.getElementById('mnav');
+  if (!toggle || !panel) return;
+  function setOpen(open){
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel.classList.toggle('open', open);
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    if (lenis) { if (open) lenis.stop(); else lenis.start(); }
+  }
+  closeMenu = function(){ if (panel.classList.contains('open')) setOpen(false); };
+  toggle.addEventListener('click', function(){
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+  panel.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setOpen(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeMenu();
+  });
+})();
+
+/* smooth in-page anchors — the .skip link keeps native behavior so focus moves */
+document.querySelectorAll('a[href^="#"]:not(.skip)').forEach(function(a){
   a.addEventListener('click', function(e){
     var id = a.getAttribute('href');
     if (id.length < 2) return;
     var el = document.querySelector(id);
     if (!el) return;
     e.preventDefault();
+    closeMenu();
     if (lenis) lenis.scrollTo(el, { offset: -70 });
     else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
   });
@@ -679,7 +746,14 @@ if (MOTION) {
   var small = Math.min(innerWidth, innerHeight) < 700;
   var STRANDS = small ? 54 : 96;
   var POINTS = small ? 90 : 130;
+  /* strands must overshoot the frustum even on ultrawide screens;
+     farthest strands sit ~26 units behind the origin (camera at z=62) */
   var SPAN = 88;
+  function updateSpan(){
+    var visible = 2 * Math.tan(camera.fov * Math.PI / 360) * (camera.position.z + 26) * camera.aspect;
+    SPAN = Math.max(88, visible * 1.15);
+  }
+  updateSpan();
 
   /* palette: deep bronze -> champagne */
   var palette = [0x8F6C33, 0xB98F4C, 0xD9B36C, 0xEED9A4, 0xF4EEE2];
@@ -744,6 +818,7 @@ if (MOTION) {
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(innerWidth, innerHeight);
+    updateSpan();
   });
 
   var running = true;
